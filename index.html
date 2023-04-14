@@ -117,10 +117,11 @@
               </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="form">
+                  <input type="hidden" id="indice" >
                   <div class="form-group">
-                    <label for="exampleFormControlSelect1">Tipo de mascota</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <label for="tipo">Tipo de mascota</label>
+                    <select class="form-control" id="tipo">
                         <option> Tipo animal</option>
                         <option value="Perro"> Perro </option>
                         <option value="Gato"> Gato </option>
@@ -130,7 +131,7 @@
                   </div>                    
                   <div class="form-row">
                       <div class="col">
-                        <input type="text" id="mascota" name="Nombre" class="form-control" placeholder="Nombre">
+                        <input type="text" id="nombre" name="Nombre" class="form-control" placeholder="Nombre">
                       </div>
                       <div class="col">
                         <input type="text" id="dueno" name="Dueño" class="form-control" placeholder="Nombre">

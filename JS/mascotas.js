@@ -4,22 +4,20 @@ let mascotas = [
         nombre: "Martín",
         dueno: "Alejandro"
     },
-    {
-        tipo: "Perro",
-        nombre: "Paul",
-        dueno: "Gustavo"
-    },
-    {
-        tipo: "Perro",
-        nombre: "Thor",
-        dueno: "Gonzalo"
-    }
+  //{
+  //   tipo: "Perro",
+  //   nombre: "Paul",
+  //   dueno: "Gustavo"
+  //},
+  //{
+  //   tipo: "Perro",
+  //   nombre: "Thor",
+  //   dueno: "Gonzalo"
+  // }
 ]
 
 function listarMascotas(){
-    let htmlMascotas = mascotas.map((mascota, indice)=>{
-        `
-        <tr>
+    let htmlMascotas = mascotas.map((mascota, indice)=>{`<tr>
             <th scope="row">${indice}</th>
             <td>${mascota.tipo}</td>
             <td>${mascota.nombre}</td>
@@ -30,9 +28,8 @@ function listarMascotas(){
                     <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                 </div>
             </td>
-        </tr>
-        `
-    }).join(" ");
+        </tr>`
+    });
     console.log(htmlMascotas);
 }
 
