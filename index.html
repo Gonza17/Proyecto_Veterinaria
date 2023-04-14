@@ -40,7 +40,7 @@
                         <a class="nav-link" href="consultas.html">Consultas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="dueños.html">Dueños</a>
+                        <a class="nav-link" href="duenos.html">Dueños</a>
                     </li>
                 </ul>
                 <form class="form-inline">
@@ -52,7 +52,9 @@
         <!-- fin NAV -->
         <!-- cuerpo de la pagina -->
         <div class="actions-menu">
-            <button type="button" class="btn btn-primary">Nuevo</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                nuevo
+            </button>              
         </div>
         <table class="table table-stripped table-hover table-dark">
             <thead>
@@ -69,22 +71,82 @@
                   <td>Mark</td>
                   <td>Otto</td>
                   <td>@mdo</td>
+                  <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-info">Editar</button>
+                        <button type="button" class="btn btn-danger">Eliminar</button>
+                    </div>
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row">2</th>
                   <td>Jacob</td>
                   <td>Thornton</td>
                   <td>@fat</td>
+                  <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-info">Editar</button>
+                        <button type="button" class="btn btn-danger">Eliminar</button>
+                    </div>
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row">3</th>
-                  <td colspan="2">Larry the Bird</td>
+                  <td>Larry the Bird</td>
                   <td>@twitter</td>
+                  <td>@twitter</td>
+                  <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-info">Editar</button>
+                        <button type="button" class="btn btn-danger">Eliminar</button>
+                    </div>
+                  </td>
                 </tr>
-              </tbody>
-            
+              </tbody>            
         </table>
-        <!-- fin del cuerpo de la pagina -->
+    </div>
+    <!-- fin del cuerpo de la pagina -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Nueva Mascota</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-row">
+                        <div class="col">
+                          <input type="text" class="form-control" placeholder="First name">
+                        </div>
+                        <div class="col">
+                          <input type="text" class="form-control" placeholder="Last name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Tipo de mascota</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option> Tipo animal</option>
+                            <option> Perro </option>
+                            <option> Gato </option>
+                            <option> Tortuga </option>
+                            <option> Conejo </option>
+                            <option> Canario </option>
+                        </select>
+                    </div>                    
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+    </div>
+      
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
