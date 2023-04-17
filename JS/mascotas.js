@@ -4,17 +4,7 @@ let mascotas = [
         nombre: "Martín",
         dueno: "Alejandro"
     },
-  //{
-  //   tipo: "Perro",
-  //   nombre: "Paul",
-  //   dueno: "Gustavo"
-  //},
-  //{
-  //   tipo: "Perro",
-  //   nombre: "Thor",
-  //   dueno: "Gonzalo"
-  // }
-]
+];
 
 function listarMascotas(){
     let htmlMascotas = mascotas.map((mascota, indice)=>{`<tr>
