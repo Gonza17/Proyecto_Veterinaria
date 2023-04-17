@@ -7,14 +7,14 @@ let mascotas = [
         dueno: "Alejandro"
     },
     {  
-    tipo: "Perro",
-    nombre: "Paul",
-    dueno: "Gustavo"
+        tipo: "Perro",
+        nombre: "Paul",
+        dueno: "Gustavo"
     },
     {
-    tipo: "Perro",
-    nombre: "Thor",
-    dueno: "Gonzalo"
+        tipo: "Perro",
+        nombre: "Thor",
+        dueno: "Gonzalo"
     }
 ];
 
