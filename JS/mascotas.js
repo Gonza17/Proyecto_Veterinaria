@@ -87,6 +87,7 @@ function resetModal(){
 function eliminar(index){
     return function (clickEnEliminar){
         console.log('index',index);
+        mascotas = mascotas.filter((mascota, indiceMascota) =>indiceMascota !== index);
     }
 }
 
