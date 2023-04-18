@@ -32,7 +32,7 @@ function listarMascotas (){
     <td>${mascota.dueno}</td>
     <td>
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-info"><i class="fas fa-edit"></i></button>
+        <button type="button" class="btn btn-info editar" ><i class="fas fa-edit"></i></button>
         <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
     </div>
     </td>
