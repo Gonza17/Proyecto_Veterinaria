@@ -4,7 +4,7 @@ const nombre = document.getElementById("nombre");
 const dueno = document.getElementById("dueno");
 const form = document.getElementById("form");
 const botonGuardar = document.getElementById("guardar");
-const indice = document.getElementById("indice")
+const indice = document.getElementById("indice");
 
 let mascotas = [
     {
@@ -32,13 +32,12 @@ function listarMascotas (){
     <td>${mascota.nombre}</td>
     <td>${mascota.dueno}</td>
     <td>
-    <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-info editar" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i></button>
-        <button type="button" class="btn btn-danger eliminar"><i class="far fa-trash-alt"></i></button>
-    </div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-info editar" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit"></i></button>
+            <button type="button" class="btn btn-danger eliminar"><i class="far fa-trash-alt"></i></button>
+        </div>
     </td>
-    </tr>`
-    ).join(" ")
+    </tr>`).join(" ");
     listaMascotas.innerHTML = htmlMascotas;
     Array.from(document.getElementsByClassName('editar')).forEach((botonEditar,index)=>botonEditar.onclick = editar(index));
     Array.from(document.getElementsByClassName('eliminar')).forEach((botonEliminar,index)=>botonEliminar.onclick = eliminar(index));
@@ -65,9 +64,9 @@ function enviarDatos(evento){
 }
 
 function editar(index){
-    botonGuardar.innerHTML = 'Editar'
-    $('#exampleModal').modal('toggle');
     return function cuandoHagoClick(){
+        botonGuardar.innerHTML = 'Editar'
+        $('#exampleModal').modal('toggle');
         const mascota = mascotas[index];
         tipo.value = mascota.tipo;
         nombre.value = mascota.nombre;
@@ -87,7 +86,7 @@ function resetModal(){
 function eliminar(index){
     return function (clickEnEliminar){
         mascotas = mascotas.filter((mascota, indiceMascota) =>indiceMascota !== index);
-        listarMascotas ();
+        listarMascotas();
     }
 }
 
