@@ -2,6 +2,14 @@ const http = require('node:http');
 const url = require('node:url');
 const StringDecoder = require('string_decoder').StringDecoder;
 
+let recursos ={
+    mascotas: [
+        {tipo:"Perro", nombre:"Thor", dueno:"Gonzalo"},
+        {tipo:"Perro", nombre:"Paul", dueno:"Gustavo"},
+        {tipo:"Gato", nombre:"Martín", dueno:"Alejandro"}
+    ]
+}
+
 const callbackDelServidor = (req, res) => {
     // obtener url desde el objeto request
     const urlActual = req.url;
@@ -51,7 +59,7 @@ const callbackDelServidor = (req, res) => {
         if (typeof handler === 'function') {
             handler(data, (statusCode = 200, mensaje) => {
                 const respuesta = JSON.stringify(mensaje);
-                res.setHrader('content-type', "application/json");
+                res.setHeader('content-type', "application/json");
                 res.writeHead(statusCode);
 
                 //linea donde realmente ya estamos dando la respuesta a la aplicación cliente.
@@ -70,6 +78,9 @@ const callbackDelServidor = (req, res) => {
 const enrutador = {
     ruta: (data, callback) => {
         callback(200, { mensaje: 'Esta es /ruta' });
+    },    
+    mascotas: (data, callback) => {
+        callback(200, recursos.mascotas);    
     },
     noEncontrado: (data, callback) => {
         callback(404, { mensaje: 'No encontrado' })
