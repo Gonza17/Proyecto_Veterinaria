@@ -29,15 +29,28 @@ const callbackDelServidor = (req, res) => {
     // obtener payload, en el caso de haber alguno.
     const decoder = new StringDecoder('utf-8');
     let buffer = '';
+  
     // ir acumulando la data cuendo el request reciba un payload
     req.on('data', (data) => {
         buffer += decoder.write(data);
     });
+
     // terminar de acumular datos y decirle al decoder que finalece.
     req.on('end', () => {
         buffer += decoder.end();
+        if(headers["content-type"] === 'application/json'){
+            buffer = JSON.parse(buffer);
+        }
+
+        // revisar si tiene subrutas en este caso es el indice del array
+        if(rutaLimpia.indexOf("/") > -1){
+            var [rutaPrincipal, indice] = rutaLimpia.split('/');
+
+        }
+
         // ordenar la data
         const data = {
+            indice ,
             ruta: rutaLimpia,
             query,
             metodo,
@@ -45,12 +58,15 @@ const callbackDelServidor = (req, res) => {
             payload: buffer
         };
 
+
         console.log({ data });
 
         // elegir el manejador de la respuesta.//handler.
         let handler;
-        if (rutaLimpia && enrutador[rutaLimpia] && enrutador[rutaLimpia][metodo]) {
-            handler = enrutador[rutaLimpia][metodo];
+        if (rutaPrincipal && 
+            enrutador[rutaPrincipal] && 
+            enrutador[rutaPrincipal][metodo]) {
+            handler = enrutador[rutaPrincipal ][metodo];
         } else {
             handler = enrutador.noEncontrado;
         }
@@ -80,8 +96,20 @@ const enrutador = {
         callback(200, { mensaje: 'Esta es /ruta' });
     },    
     mascotas:{
+
         get: (data, callback) => {
+            if(data.indice){
+                if(recursos.mascotas[indice]){
+                    
+                }
+                callback(200, recursos);
+            }
             callback(200, recursos.mascotas);    
+        },
+        post: (data, callback) => {
+            console.log("handler: ",{data});
+            recursos.mascotas.push(data.payload);
+            callback(201, data.payload);    
         },
         
     } ,
