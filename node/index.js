@@ -51,7 +51,7 @@ const callbackDelServidor = (req, res) => {
         // ordenar la data
         const data = {
             indice ,
-            ruta: rutaLimpia,
+            ruta:  rutaPrincipal||rutaLimpia,
             query,
             metodo,
             headers,
@@ -63,10 +63,10 @@ const callbackDelServidor = (req, res) => {
 
         // elegir el manejador de la respuesta.//handler.
         let handler;
-        if (rutaPrincipal && 
-            enrutador[rutaPrincipal] && 
-            enrutador[rutaPrincipal][metodo]) {
-            handler = enrutador[rutaPrincipal ][metodo];
+        if (data.ruta && 
+            enrutador[data.ruta] && 
+            enrutador[data.ruta][metodo]) {
+            handler = enrutador[data.ruta ][metodo];
         } else {
             handler = enrutador.noEncontrado;
         }
@@ -98,11 +98,11 @@ const enrutador = {
     mascotas:{
 
         get: (data, callback) => {
-            if(data.indice){
-                if(recursos.mascotas[indice]){
-                    
+            if(typeof data.indice !== "undefined"){
+                if(recursos.mascotas[data.indice]){
+                    return callback(200, recursos.mascotas[data.indice])
                 }
-                callback(200, recursos);
+                return callback(404, {mensaje: `mascota con indice: ${data.indice} no encontrada`})
             }
             callback(200, recursos.mascotas);    
         },
