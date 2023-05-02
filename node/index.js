@@ -1,12 +1,13 @@
 const http = require('node:http');
 const url = require('node:url');
 const StringDecoder = require('string_decoder').StringDecoder;
+const enrutador = require('./enrutador');
 
-let recursos ={
+global.recursos = {
     mascotas: [
-        {tipo:"Perro", nombre:"Thor", dueno:"Gonzalo"},
-        {tipo:"Perro", nombre:"Paul", dueno:"Gustavo"},
-        {tipo:"Gato", nombre:"Martín", dueno:"Alejandro"}
+        { tipo: "Perro", nombre: "Thor", dueno: "Gonzalo" },
+        { tipo: "Perro", nombre: "Paul", dueno: "Gustavo" },
+        { tipo: "Gato", nombre: "Martín", dueno: "Alejandro" }
     ]
 }
 
@@ -29,7 +30,7 @@ const callbackDelServidor = (req, res) => {
     // obtener payload, en el caso de haber alguno.
     const decoder = new StringDecoder('utf-8');
     let buffer = '';
-  
+
     // ir acumulando la data cuendo el request reciba un payload
     req.on('data', (data) => {
         buffer += decoder.write(data);
@@ -38,20 +39,20 @@ const callbackDelServidor = (req, res) => {
     // terminar de acumular datos y decirle al decoder que finalece.
     req.on('end', () => {
         buffer += decoder.end();
-        if(headers["content-type"] === 'application/json'){
+        if (headers["content-type"] === 'application/json') {
             buffer = JSON.parse(buffer);
         }
 
         // revisar si tiene subrutas en este caso es el indice del array
-        if(rutaLimpia.indexOf("/") > -1){
+        if (rutaLimpia.indexOf("/") > -1) {
             var [rutaPrincipal, indice] = rutaLimpia.split('/');
 
         }
 
         // ordenar la data
         const data = {
-            indice ,
-            ruta:  rutaPrincipal||rutaLimpia,
+            indice,
+            ruta: rutaPrincipal || rutaLimpia,
             query,
             metodo,
             headers,
@@ -63,10 +64,10 @@ const callbackDelServidor = (req, res) => {
 
         // elegir el manejador de la respuesta.//handler.
         let handler;
-        if (data.ruta && 
-            enrutador[data.ruta] && 
+        if (data.ruta &&
+            enrutador[data.ruta] &&
             enrutador[data.ruta][metodo]) {
-            handler = enrutador[data.ruta ][metodo];
+            handler = enrutador[data.ruta][metodo];
         } else {
             handler = enrutador.noEncontrado;
         }
@@ -91,32 +92,7 @@ const callbackDelServidor = (req, res) => {
     */
 };
 
-const enrutador = {
-    ruta: (data, callback) => {
-        callback(200, { mensaje: 'Esta es /ruta' });
-    },    
-    mascotas:{
 
-        get: (data, callback) => {
-            if(typeof data.indice !== "undefined"){
-                if(recursos.mascotas[data.indice]){
-                    return callback(200, recursos.mascotas[data.indice])
-                }
-                return callback(404, {mensaje: `mascota con indice: ${data.indice} no encontrada`})
-            }
-            callback(200, recursos.mascotas);    
-        },
-        post: (data, callback) => {
-            console.log("handler: ",{data});
-            recursos.mascotas.push(data.payload);
-            callback(201, data.payload);    
-        },
-        
-    } ,
-    noEncontrado: (data, callback) => {
-        callback(404, { mensaje: 'No encontrado' })
-    },
-}
 
 const server = http.createServer(callbackDelServidor);
 
