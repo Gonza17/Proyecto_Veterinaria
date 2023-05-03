@@ -1,15 +1,8 @@
 const http = require('node:http');
-const enrutador = require('./enrutador');
 const requestHandler = require('./request-handler');
+const recursos = require('./recursos');
 
-
-global.recursos = {
-    mascotas: [
-        { tipo: "Perro", nombre: "Thor", dueno: "Gonzalo" },
-        { tipo: "Perro", nombre: "Paul", dueno: "Gustavo" },
-        { tipo: "Gato", nombre: "Martín", dueno: "Alejandro" }
-    ]
-}
+global.recursos = recursos;
 
 const server = http.createServer(requestHandler);
 
