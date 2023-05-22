@@ -6,9 +6,15 @@ module.exports = {
         { tipo: "Gato", nombre: "Trinity", dueno: "Vicente" },
     ],
     veterinarias: [
-        { nombre: "Alexandra", apellido: "Perez", documneto: "222333455543" },
-        { nombre: "Alexander", apellido: "Gómez", documneto: "839874191928" },
-        { nombre: "Maricel", apellido: "Gonzalez", documneto: "123712938712" },
-        { nombre: "Celicia", apellido: "Rocco", documneto: "12398271398123" },
+        { nombre: "Alexandra", apellido: "Perez", documneto: "222333455543", pais: "Chile" },
+        { nombre: "Alexander", apellido: "Gómez", documneto: "839874191928", pais: "Chile" },
+        { nombre: "Maricel", apellido: "Gonzalez", documneto: "123712938712", pais: "Chile" },
+        { nombre: "Celicia", apellido: "Rocco", documneto: "12398271398123", pais: "Chile" },
+    ],
+    duenos: [
+        { nombre: "Alejandra", apellido: "Hernandez", documneto: "222333455543", pais: "Chile" },
+        { nombre: "Alejandro", apellido: "Martinez", documneto: "839874191928", pais: "Chile" },
+        { nombre: "Leonel", apellido: "Messi", documneto: "123712938712", pais: "Chile" },
+        { nombre: "Cristiano", apellido: "Rolando", documneto: "12398271398123", pais: "Chile" },
     ],
 };
