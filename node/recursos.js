@@ -3,5 +3,7 @@ module.exports = {
         { tipo: "Perro", nombre: "Thor", dueno: "Gonzalo" },
         { tipo: "Perro", nombre: "Paul", dueno: "Gustavo" },
         { tipo: "Gato", nombre: "Martín", dueno: "Alejandro" },
+        { tipo: "Gato", nombre: "Trinity", dueno: "Vicente" },
     ],
+
 };
