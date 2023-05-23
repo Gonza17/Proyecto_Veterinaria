@@ -11,8 +11,8 @@ module.exports = function consultasHandler(consultas) {
         },
         post: (data, callback) => {
             let nuevaConsulta = data.payload;
-            consulta.fechaCreacion = new Date();
-            consulta.fechaEdicion = null;
+            nuevaConsulta.fechaCreacion = new Date();
+            nuevaConsulta.fechaEdicion = null;
             consultas = [...consultas, nuevaConsulta] ;
             console.log("handler: ", { data });
             consultas.push(data.payload);
