@@ -10,14 +10,19 @@ module.exports = function consultasHandler(consultas) {
             callback(200, consultas);
         },
         post: (data, callback) => {
+            let nuevaConsulta = data.payload;
+            consulta.fechaCreacion = new Date();
+            consulta.fechaEdicion = null;
+            consultas = [...consultas, nuevaConsulta] ;
             console.log("handler: ", { data });
             consultas.push(data.payload);
-            callback(201, data.payload);
+            callback(201, nuevaConsulta);
         },
         put: (data, callback) => {
             if (typeof data.indice !== "undefined") {
                 if (consultas[data.indice]) {
-                    consultas[data.indice] = data.payload;
+                    const { fechaCreacion } = consultas[data.indice];
+                    consultas[data.indice] = {...data.payload, fechaCreacion, fechaEdicion: new Date()};
                     return callback(200, consultas[data.indice]);
                 }
                 return callback(404, { mensaje: `consulta con indice ${data.indice} no encontrada` });
