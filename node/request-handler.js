@@ -12,6 +12,18 @@ module.exports = (req, res) => {
     const rutaLimpia = ruta.replace(/^\/+|\/+$/g, "");
     // obtener el metodo http
     const metodo = req.method.toLowerCase();
+
+    //obtener el metodo para personas externas
+    res.setHeader('Access-Control-Allow-Origin', "*");//aquí es para poder ver el origen de la consulta
+    res.setHeader('Access-Control-Request-Methods', "OPTIONS,GET,PUT,DELETE,POST");//en esta parte sirve para destacar cada unas de las opciones que pueden interactuar con el server 
+    res.setHeader('Access-Control-Allow-Headers', "*");
+    res.setHeader('Access-Control-Allow-Methods', "OPTIONS,GET,PUT,DELETE,POST");//indica que tipo de headers se puede poner dentro de las opciones.
+    if (metodo === 'options') {
+        res.writeHead(200);
+        res.end();
+        return;
+    }
+
     // obtener las variables del query
     const { query = {} } = urlParseada;
     console.log({ query });
