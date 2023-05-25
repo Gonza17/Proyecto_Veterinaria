@@ -17,4 +17,13 @@ module.exports = {
         { nombre: "Leonel", apellido: "Messi", documneto: "123712938712", pais: "Chile" },
         { nombre: "Cristiano", apellido: "Rolando", documneto: "12398271398123", pais: "Chile" },
     ],
+    consultas: [
+        {
+            mascota: 0, 
+            veterinaria: 0, 
+            fechaCreacion: new Date(),
+            fechaEdicion: new Date(), 
+            historia: '', 
+            diagnostico: ''},
+    ],
 };
