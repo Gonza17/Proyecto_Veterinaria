@@ -11,21 +11,14 @@ let mascotas = [];
 
 async function listarMascotas() {
     try {
-        const respuesta = await fetch(url)
+        const respuesta = await fetch(url);
         const mascotasDelServer = await respuesta.json();
-        /*.then((respuesta) => {
-        if (respuesta.ok) {
-            return respuesta.json();
-        }
-    }).then((mascotasDelServer) => {
-        mascotas = mascotasDelServer;
-    });*/
         if (Array.isArray(mascotasDelServer)) {
             mascotas = mascotasDelServer;
         }
-        if(mascotas.length > 0){
+        if (mascotas.length > 0) {
             const htmlMascotas = mascotas.map((mascota, index) =>
-            `<tr>
+                `<tr>
             <th scope="row">${index}</th>
             <td>${mascota.tipo}</td>
             <td>${mascota.nombre}</td>
@@ -37,15 +30,15 @@ async function listarMascotas() {
                 </div>
             </td>
             </tr>`).join(" ");
-        listaMascotas.innerHTML = htmlMascotas;
-        Array.from(document.getElementsByClassName('editar')).forEach((botonEditar, index) => botonEditar.onclick = editar(index));
-        Array.from(document.getElementsByClassName('eliminar')).forEach((botonEliminar, index) => botonEliminar.onclick = eliminar(index));
-        return;
-        }   
+            listaMascotas.innerHTML = htmlMascotas;
+            Array.from(document.getElementsByClassName('editar')).forEach((botonEditar, index) => botonEditar.onclick = editar(index));
+            Array.from(document.getElementsByClassName('eliminar')).forEach((botonEliminar, index) => botonEliminar.onclick = eliminar(index));
+            return;
+        }
         listaMascotas.innerHTML = `
         <tr>
             <td colspan="5">No Hay Mascotas</td>
-        </tr>`;     
+        </tr>`;
     } catch (error) {
         $(".alert").alert("show");
     }
@@ -107,12 +100,11 @@ function resetModal() {
 
 function eliminar(index) {
     const urlEnvio = `${url}/${index}`;
-    return async function (clickEnEliminar) {
+    return async function clickEnEliminar() {
         try {
-
             const respuesta = await fetch(urlEnvio, {
                 method: 'DELETE', // or 'PUT'
-            // data can be `string` or {object}!
+                // data can be `string` or {object}!
             });
             if (respuesta.ok) {
                 listarMascotas();
